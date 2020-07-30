@@ -53,6 +53,7 @@ import com.google.mlkit.md.objectdetection.ProminentObjectProcessor
 import com.google.mlkit.md.productsearch.BottomSheetScrimView
 import com.google.mlkit.md.productsearch.Product
 import com.google.mlkit.md.productsearch.ProductAdapter
+import com.google.mlkit.md.productsearch.SearchEngine
 import com.google.mlkit.md.settings.PreferenceUtils
 import com.google.mlkit.md.settings.SettingsActivity
 import java.io.IOException
@@ -72,6 +73,7 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
     private var searchButtonAnimator: AnimatorSet? = null
     private var workflowModel: WorkflowModel? = null
     private var currentWorkflowState: WorkflowState? = null
+    private var searchEngine: SearchEngine? = null
 
     private var bottomSheetBehavior: BottomSheetBehavior<View>? = null
     private var bottomSheetScrimView: BottomSheetScrimView? = null
@@ -82,6 +84,8 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        searchEngine = SearchEngine(applicationContext)
 
         setContentView(R.layout.activity_live_object_kotlin)
         preview = findViewById(R.id.camera_preview)
@@ -139,6 +143,7 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
         super.onPause()
         currentWorkflowState = WorkflowState.NOT_STARTED
         stopCameraPreview()
+        searchEngine?.shutdown()
     }
 
     override fun onDestroy() {
@@ -284,11 +289,10 @@ class CustomModelObjectDetectionActivity : AppCompatActivity(), OnClickListener 
             // Observes changes on the object to search, if happens, show detected object labels as
             // product search results.
             objectToSearch.observe(this@CustomModelObjectDetectionActivity, Observer { detectObject ->
-                val productList: List<Product> = detectObject.labels.map { label ->
 
-                    Product("" /* imageUrl */, label.text, "confidence: "+label.confidence /* subtitle */)
+                searchEngine!!.search(detectObject) { detectedObject, products ->
+                    workflowModel?.onSearchCompleted(detectedObject, products)
                 }
-                workflowModel?.onSearchCompleted(detectObject, productList)
             })
 
             // Observes changes on the object that has search completed, if happens, show the bottom sheet

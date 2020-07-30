@@ -17,4 +17,4 @@
 package com.google.mlkit.md.productsearch
 
 /** Information about a product.  */
-data class Product internal constructor(val imageUrl: String, val title: String, val subtitle: String)
+data class Product internal constructor(val imageUrl: String, val title: String, val price: String)

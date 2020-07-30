@@ -45,7 +45,7 @@ class ProductAdapter(private val productList: List<Product>) : Adapter<ProductVi
                 imageView.setImageResource(R.drawable.logo_google_cloud)
             }
             titleView.text = product.title
-            subtitleView.text = product.subtitle
+            subtitleView.text = product.price
         }
 
         companion object {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.google.mlkit.md"
+    package="com.goldeneye.md"
     android:installLocation="auto">
 
   <uses-feature android:name="android.hardware.camera"/>
@@ -23,7 +23,7 @@
         android:value="@integer/google_play_services_version"/>
 
     <activity
-        android:name="com.google.mlkit.md.MainActivity"
+        android:name="com.goldeneye.md.MainActivity"
         android:exported="true"
         android:screenOrientation="portrait">
       <intent-filter>
@@ -32,24 +32,24 @@
       </intent-filter>
     </activity>
 
+<!--    <activity-->
+<!--        android:name="com.google.mlkit.md.StaticObjectDetectionActivity"-->
+<!--        android:exported="false"-->
+<!--        android:screenOrientation="portrait">-->
+<!--    </activity>-->
+
     <activity
-        android:name="com.google.mlkit.md.StaticObjectDetectionActivity"
+        android:name="com.goldeneye.md.CustomModelObjectDetectionActivity"
         android:exported="false"
         android:screenOrientation="portrait">
     </activity>
 
-    <activity
-        android:name="com.google.mlkit.md.CustomModelObjectDetectionActivity"
-        android:exported="false"
-        android:screenOrientation="portrait">
-    </activity>
-
-    <activity
-        android:name="com.google.mlkit.md.settings.SettingsActivity"
-        android:exported="false"
-        android:label="@string/settings_title"
-        android:screenOrientation="portrait">
-    </activity>
+<!--    <activity-->
+<!--        android:name="com.google.mlkit.md.settings.SettingsActivity"-->
+<!--        android:exported="false"-->
+<!--        android:label="@string/settings_title"-->
+<!--        android:screenOrientation="portrait">-->
+<!--    </activity>-->
 
   </application>
 

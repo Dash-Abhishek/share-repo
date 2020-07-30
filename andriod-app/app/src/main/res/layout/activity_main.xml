@@ -7,20 +7,19 @@
   <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="#1E88E5"
+      android:background="#001E88E5"
       android:fontFamily="sans-serif-condensed-medium"
       android:gravity="center_horizontal"
       android:paddingTop="@dimen/home_page_title_padding_top"
       android:paddingBottom="@dimen/home_page_title_padding_bottom"
       android:text="@string/app_name"
-      android:textColor="@color/white"
+      android:textColor="#F9B610"
       android:textSize="@dimen/home_page_title_size" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/mode_recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="#1E88E5"
       android:scrollbars="vertical"
       android:textAlignment="center" />
 
